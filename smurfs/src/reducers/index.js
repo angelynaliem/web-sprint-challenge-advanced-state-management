@@ -1,14 +1,9 @@
-// import * as actions from "../actions";
-
-import { bindActionCreators } from "redux"
+import * as actions from "../actions";
 
 const initialState = {
 
-    smurfs: [
-        { name: "", age: 0, height: "", id: 0 }
-    ],
-
-    isFetching: false,
+    smurfs: [],
+    isProcessing: false,
     error: ""
 
 }
@@ -17,38 +12,38 @@ export const reducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case SMURF_FETCHING:
+        case actions.SMURF_PROCESSING:
 
-        console.log("fetching smurf")
+        console.log("processing smurf")
 
         return {
             ...state,
-            isFetching: true
+            isProcessing: true
         }
 
-        case SMURF_FETCHED:
+        case actions.SMURF_FETCHED:
 
         console.log("fetched smurf")
 
         return {
             ...state,
-            smurfs: [
-                ...state.smurfs, action.payload
-            ],
-            isFetching: false
+            smurfs:
+                // ...state.smurfs, 
+                action.payload,
+            isProcessing: false
             }
 
-        case SMURF_FAIL:
+        case actions.SMURF_FAIL:
 
         console.log("failed to fetch or post smurf")
 
         return {
             ...state,
-            isFetching: false,
+            isProcessing: false,
             error: action.payload
         }
 
-        case ADD_SMURF:
+        case actions.ADD_SMURF:
 
         console.log("adding smurf")
 
