@@ -8,6 +8,7 @@ import {
 } from "../actions";
 
 import Smurfs from "./Smurfs";
+import Form from "./Form";
 
 
 const App = (props) => {
@@ -28,6 +29,7 @@ const App = (props) => {
     <div className="App">
       <button onClick={() => props.getSmurf(props.smurfs)}>Get smurfs list</button>
        <Smurfs smurfs={props.smurfs} getSmurf={props.getSmurf}/>
+       <Form />
     </div>
   );
 
