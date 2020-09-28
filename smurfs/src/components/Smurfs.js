@@ -9,7 +9,7 @@ const Smurfs = props => {
 return (
      <div>
          {props.smurfs.map(item => (
-             <Smurf key={item.id} smurf={item} getSmurf={props.getSmurf}/>
+             <Smurf smurf={item} getSmurf={props.getSmurf} addSmurf={props.addSmurf}/>
          ))}
         </div>
 )

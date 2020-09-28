@@ -1,45 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-// import { connect } from "react-redux";
+import { getSmurf, addSmurf } from "../actions";
 
-class Form extends React.Component {
+import { connect } from "react-redux";
 
-    constructor() {
-        super()
-        this.state = {
-            newSmurf: {
-                newName: "",
-                newAge: "",
-                newHeight: "",
-                }
+const Form = (props) => {
+
+    const startingForm = {
+        name: "",
+        age: "",
+        height: ""
     }
-}
 
-    handleInputChange = e => {
+    const [newSmurf, setNewSmurf] = useState(startingForm);
+
+    const handleInputChange = e => {
         e.persist();
-        this.setState({ 
-            ...this.state,
+        setNewSmurf({ 
+            ...newSmurf,
             [e.target.name] : e.target.value
         })
     }
 
-    submitForm = e => {
+    const submitForm = e => {
         e.preventDefault();
         console.log("form submitted")
-        this.props.addNewSmurf(e, this.state.newSmurf)
+        props.addSmurf(newSmurf)
+        props.getSmurf()
+        setNewSmurf(startingForm)
     }
-
-    render() {
+   
         return (
             <div>
-                <form onSubmit={this.submitForm}>
+                <form onSubmit={submitForm}>
                     <input htmlFor="name"
                     id = "name"
                     name = "name"
                     type = "text"
                     placeholder = "Name"
-                    value = {this.state.newSmurf.newName}
-                    onChange = {this.handleInputChange}
+                    value = {newSmurf.name}
+                    onChange = {handleInputChange}
                     />
 
                     <input htmlFor="age"
@@ -47,8 +47,8 @@ class Form extends React.Component {
                     name = "age"
                     type = "number"
                     placeholder = "Age"
-                    value = {this.state.newSmurf.newAge}
-                    onChange = {this.handleInputChange}
+                    value = {newSmurf.age}
+                    onChange = {handleInputChange}
                     /> 
 
                     <input htmlFor="height"
@@ -56,25 +56,23 @@ class Form extends React.Component {
                     name = "height"
                     type = "text"
                     placeholder = "Height"
-                    value = {this.state.newSmurf.newHeight}
-                    onChange = {this.handleInputChange}
+                    value = {newSmurf.height}
+                    onChange = {handleInputChange}
                     />
 
-
-
-                    <button>Add new smurf to the village</button>
+                    <button type="submit">Add new smurf to the village</button>
                 </form>
             </div>
         )
-    }
-
 }
 
-// const mapStateToProps = (state) => {
-//     return {
 
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+        smurfs: state.smurfs
+    }
+}
 
+const mapDispatchToProps = { getSmurf, addSmurf }
 
-export default Form;
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

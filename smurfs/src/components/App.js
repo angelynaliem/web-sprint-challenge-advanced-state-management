@@ -4,7 +4,7 @@ import "./App.css";
 import { connect } from "react-redux";
 import { 
   getSmurf, 
-  // addSmurf 
+  addSmurf 
 } from "../actions";
 
 import Smurfs from "./Smurfs";
@@ -28,7 +28,7 @@ const App = (props) => {
   return (
     <div className="App">
       <button onClick={() => props.getSmurf(props.smurfs)}>Get smurfs list</button>
-       <Smurfs smurfs={props.smurfs} getSmurf={props.getSmurf}/>
+       <Smurfs smurfs={props.smurfs} getSmurf={props.getSmurf} addSmurf={props.addSmurf}/>
        <Form />
     </div>
   );
@@ -45,7 +45,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = { 
-  // addSmurf, 
+  addSmurf, 
   getSmurf };
   
 

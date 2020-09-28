@@ -4,7 +4,7 @@ const initialState = {
 
     smurfs: [],
     isProcessing: false,
-    error: ""
+    error: "",
 
 }
 
@@ -52,6 +52,7 @@ export const reducer = (state = initialState, action) => {
             smurfs: [
                 ...state.smurfs, action.payload
             ],
+           
         }
 
         default:

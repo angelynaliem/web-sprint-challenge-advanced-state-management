@@ -18,7 +18,7 @@ export const addSmurf = (newSmurf) => (dispatch) => {
         console.log("posting new smurf", res.data)
         dispatch({
             type: ADD_SMURF,
-            payload: res.data
+            payload: res.data,
         })
     })
         .catch((err) => {
